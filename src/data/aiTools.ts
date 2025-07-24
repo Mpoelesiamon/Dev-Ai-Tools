@@ -384,6 +384,438 @@ export const aiTools: Tool[] = [
     ],
     rating: 4.5,
     userCount: "300k+"
+  },
+  {
+    id: "17",
+    name: "Bolt AI",
+    description: "Full-stack AI generator for building MVPs, landing pages, and agency websites with fast deployment capabilities.",
+    category: "Full-stack",
+    tags: ["mvp", "landing-pages", "fast-deployment", "agency-websites"],
+    pricing: "Freemium",
+    url: "https://bolt.new",
+    features: [
+      "MVP generation",
+      "Fast deployment",
+      "Agency templates",
+      "Full-stack apps",
+      "AI-powered design",
+      "Instant preview"
+    ],
+    limitations: [
+      "Limited customization",
+      "Template dependency",
+      "Learning curve"
+    ],
+    rating: 4.3,
+    userCount: "100k+"
+  },
+  {
+    id: "18",
+    name: "Co.dev",
+    description: "No-frills AI generator for modern full-stack apps with a minimal backend and clean architecture.",
+    category: "Full-stack",
+    tags: ["minimal", "full-stack", "modern-apps", "clean-architecture"],
+    pricing: "Freemium",
+    url: "https://co.dev",
+    features: [
+      "Minimal backend",
+      "Clean architecture",
+      "Modern frameworks",
+      "AI generation",
+      "Fast setup",
+      "Developer-focused"
+    ],
+    limitations: [
+      "Limited features",
+      "Minimal documentation",
+      "Early stage"
+    ],
+    rating: 4.1,
+    userCount: "25k+"
+  },
+  {
+    id: "19",
+    name: "Firebase Studio",
+    description: "Google's AI-powered platform for building frontend and Firebase backend systems with integrated tools.",
+    category: "Full-stack",
+    tags: ["google", "firebase", "backend", "frontend", "integrated"],
+    pricing: "Freemium",
+    url: "https://firebase.google.com",
+    features: [
+      "Firebase integration",
+      "AI assistance",
+      "Google ecosystem",
+      "Real-time database",
+      "Authentication",
+      "Cloud functions"
+    ],
+    limitations: [
+      "Google dependency",
+      "Complex pricing",
+      "Learning curve"
+    ],
+    rating: 4.4,
+    userCount: "2M+"
+  },
+  {
+    id: "20",
+    name: "Softgen.ai",
+    description: "AI code generation tool that creates frontend, backend, and database schemas from natural language prompts.",
+    category: "Full-stack",
+    tags: ["code-generation", "database-schema", "full-stack", "natural-language"],
+    pricing: "Freemium",
+    url: "https://softgen.ai",
+    features: [
+      "Full-stack generation",
+      "Database schemas",
+      "Natural language",
+      "Multiple frameworks",
+      "Code export",
+      "API generation"
+    ],
+    limitations: [
+      "Quality variance",
+      "Limited templates",
+      "Dependency management"
+    ],
+    rating: 4.2,
+    userCount: "75k+"
+  },
+  {
+    id: "21",
+    name: "Mendix",
+    description: "Low-code platform enhanced by AI to speed up app development and ensure quality with enterprise features.",
+    category: "No-code",
+    tags: ["low-code", "enterprise", "quality-assurance", "rapid-development"],
+    pricing: "Paid",
+    url: "https://mendix.com",
+    features: [
+      "Low-code development",
+      "AI assistance",
+      "Enterprise features",
+      "Quality assurance",
+      "Team collaboration",
+      "Deployment tools"
+    ],
+    limitations: [
+      "Expensive pricing",
+      "Complex setup",
+      "Learning curve"
+    ],
+    rating: 4.3,
+    userCount: "500k+"
+  },
+  {
+    id: "22",
+    name: "Superblocks",
+    description: "Internal tools builder with AI to automate business applications, dashboards, and workflows efficiently.",
+    category: "No-code",
+    tags: ["internal-tools", "dashboards", "workflows", "business-automation"],
+    pricing: "Freemium",
+    url: "https://superblocks.com",
+    features: [
+      "Internal tools",
+      "Dashboard builder",
+      "Workflow automation",
+      "API integrations",
+      "Team collaboration",
+      "AI assistance"
+    ],
+    limitations: [
+      "Limited public tools",
+      "Learning curve",
+      "Pricing for scale"
+    ],
+    rating: 4.4,
+    userCount: "150k+"
+  },
+  {
+    id: "23",
+    name: "Shuttle AI",
+    description: "AI-based full-stack generator focused on backend development with secure defaults and best practices.",
+    category: "Full-stack",
+    tags: ["backend-focused", "secure-defaults", "best-practices", "rust"],
+    pricing: "Freemium",
+    url: "https://shuttle.rs",
+    features: [
+      "Backend focus",
+      "Secure defaults",
+      "Rust-based",
+      "Best practices",
+      "Fast deployment",
+      "Infrastructure handling"
+    ],
+    limitations: [
+      "Rust dependency",
+      "Limited frontend",
+      "Learning curve"
+    ],
+    rating: 4.2,
+    userCount: "50k+"
+  },
+  {
+    id: "24",
+    name: "CodeDesign.AI",
+    description: "No-code/low-code platform that turns text prompts into responsive HTML, CSS, and JavaScript websites.",
+    category: "No-code",
+    tags: ["text-to-code", "responsive", "html-css-js", "prompt-based"],
+    pricing: "Freemium",
+    url: "https://codedesign.ai",
+    features: [
+      "Text to code",
+      "Responsive design",
+      "HTML/CSS/JS output",
+      "Prompt-based",
+      "Live preview",
+      "Code export"
+    ],
+    limitations: [
+      "Limited complexity",
+      "Basic functionality",
+      "Template constraints"
+    ],
+    rating: 4.0,
+    userCount: "80k+"
+  },
+  {
+    id: "25",
+    name: "LandingSite.ai",
+    description: "AI landing page generator focused on fast site creation with minimal setup and conversion optimization.",
+    category: "No-code",
+    tags: ["landing-pages", "fast-creation", "conversion", "minimal-setup"],
+    pricing: "Freemium",
+    url: "https://landingsite.ai",
+    features: [
+      "Fast generation",
+      "Landing page focus",
+      "Conversion optimization",
+      "Minimal setup",
+      "AI copywriting",
+      "Template library"
+    ],
+    limitations: [
+      "Landing pages only",
+      "Limited customization",
+      "Template dependency"
+    ],
+    rating: 4.1,
+    userCount: "120k+"
+  },
+  {
+    id: "26",
+    name: "TeleportHQ",
+    description: "Visual builder that transforms prompts into React/Vue UI components and exports production-ready code instantly.",
+    category: "No-code",
+    tags: ["react", "vue", "ui-components", "visual-builder", "code-export"],
+    pricing: "Freemium",
+    url: "https://teleporthq.io",
+    features: [
+      "React/Vue support",
+      "Visual builder",
+      "Code export",
+      "UI components",
+      "Real-time preview",
+      "Team collaboration"
+    ],
+    limitations: [
+      "Framework specific",
+      "Learning curve",
+      "Limited backend"
+    ],
+    rating: 4.3,
+    userCount: "200k+"
+  },
+  {
+    id: "27",
+    name: "Builder.io",
+    description: "Visual CMS with AI assistance that converts Figma designs and prompts into clean, production-ready code.",
+    category: "No-code",
+    tags: ["visual-cms", "figma-import", "clean-code", "cms", "design-to-code"],
+    pricing: "Freemium",
+    url: "https://builder.io",
+    features: [
+      "Figma integration",
+      "Visual CMS",
+      "Clean code output",
+      "AI assistance",
+      "A/B testing",
+      "Performance optimization"
+    ],
+    limitations: [
+      "Complex pricing",
+      "Learning curve",
+      "Setup complexity"
+    ],
+    rating: 4.5,
+    userCount: "300k+"
+  },
+  {
+    id: "28",
+    name: "Locofy.ai",
+    description: "AI-to-code builder that outputs production-ready code from designs or prompts with high fidelity conversion.",
+    category: "No-code",
+    tags: ["design-to-code", "production-ready", "high-fidelity", "ai-conversion"],
+    pricing: "Freemium",
+    url: "https://locofy.ai",
+    features: [
+      "Design to code",
+      "Production ready",
+      "High fidelity",
+      "Multiple frameworks",
+      "Responsive output",
+      "Component library"
+    ],
+    limitations: [
+      "Design dependency",
+      "Limited customization",
+      "Framework constraints"
+    ],
+    rating: 4.2,
+    userCount: "150k+"
+  },
+  {
+    id: "29",
+    name: "Xano",
+    description: "AI backend builder that creates APIs, integrates databases, and handles business logic visually without coding.",
+    category: "Full-stack",
+    tags: ["backend", "api-builder", "database", "visual-logic", "no-code-backend"],
+    pricing: "Freemium",
+    url: "https://xano.com",
+    features: [
+      "Visual API builder",
+      "Database integration",
+      "Business logic",
+      "Real-time data",
+      "Authentication",
+      "Scalable backend"
+    ],
+    limitations: [
+      "Backend only",
+      "Learning curve",
+      "Pricing for scale"
+    ],
+    rating: 4.4,
+    userCount: "100k+"
+  },
+  {
+    id: "30",
+    name: "WPTurbo AI",
+    description: "AI for WordPress developers to create plugins, themes, and code snippets following WordPress best practices.",
+    category: "WordPress",
+    tags: ["wordpress", "plugins", "themes", "code-snippets", "best-practices"],
+    pricing: "Freemium",
+    url: "https://wpturbo.dev",
+    features: [
+      "Plugin generation",
+      "Theme creation",
+      "Code snippets",
+      "WordPress standards",
+      "Best practices",
+      "Developer tools"
+    ],
+    limitations: [
+      "WordPress only",
+      "Requires WP knowledge",
+      "Limited complexity"
+    ],
+    rating: 4.3,
+    userCount: "75k+"
+  },
+  {
+    id: "31",
+    name: "ZipWP",
+    description: "AI-powered WordPress site generator that builds and designs complete websites in under 60 seconds.",
+    category: "WordPress",
+    tags: ["wordpress", "fast-generation", "complete-websites", "60-seconds", "design"],
+    pricing: "Freemium",
+    url: "https://zipwp.com",
+    features: [
+      "60-second sites",
+      "Complete websites",
+      "WordPress optimized",
+      "AI design",
+      "Content generation",
+      "Theme integration"
+    ],
+    limitations: [
+      "WordPress only",
+      "Template based",
+      "Limited customization"
+    ],
+    rating: 4.2,
+    userCount: "200k+"
+  },
+  {
+    id: "32",
+    name: "CodeWP",
+    description: "AI for writing optimized WordPress code, including PHP snippets, hooks, and shortcodes with best practices.",
+    category: "WordPress",
+    tags: ["wordpress", "php", "hooks", "shortcodes", "code-optimization"],
+    pricing: "Freemium",
+    url: "https://codewp.ai",
+    features: [
+      "PHP code generation",
+      "WordPress hooks",
+      "Shortcode creation",
+      "Code optimization",
+      "Best practices",
+      "Security focused"
+    ],
+    limitations: [
+      "WordPress specific",
+      "PHP knowledge helpful",
+      "Limited scope"
+    ],
+    rating: 4.4,
+    userCount: "100k+"
+  },
+  {
+    id: "33",
+    name: "Elementor AI",
+    description: "WordPress page builder with integrated AI to write, design, and translate content with drag-and-drop interface.",
+    category: "WordPress",
+    tags: ["wordpress", "page-builder", "drag-drop", "content-ai", "translation"],
+    pricing: "Freemium",
+    url: "https://elementor.com",
+    features: [
+      "Drag-and-drop builder",
+      "AI content writing",
+      "Design assistance",
+      "Translation tools",
+      "Template library",
+      "Responsive design"
+    ],
+    limitations: [
+      "WordPress only",
+      "Plugin dependency",
+      "Performance impact"
+    ],
+    rating: 4.5,
+    userCount: "5M+"
+  },
+  {
+    id: "34",
+    name: "10Web AI Builder",
+    description: "AI-powered WordPress builder that clones websites and builds pages with AI-generated content and optimization.",
+    category: "WordPress",
+    tags: ["wordpress", "website-cloning", "ai-content", "optimization", "builder"],
+    pricing: "Freemium",
+    url: "https://10web.io",
+    features: [
+      "Website cloning",
+      "AI page builder",
+      "Content generation",
+      "Performance optimization",
+      "SEO tools",
+      "Hosting included"
+    ],
+    limitations: [
+      "WordPress focused",
+      "Subscription required",
+      "Limited flexibility"
+    ],
+    rating: 4.3,
+    userCount: "400k+"
   }
 ];
 
