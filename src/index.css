@@ -2,41 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* AI Tool Explorer Design System - Modern, clean with tech-focused aesthetics */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Background & Surface Colors */
+    --background: 240 10% 98%;
+    --foreground: 240 10% 9%;
+    --surface: 240 10% 100%;
+    --surface-alt: 240 5% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card System */
+    --card: 240 10% 100%;
+    --card-foreground: 240 10% 9%;
+    --card-border: 240 5% 92%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Interactive Elements */
+    --popover: 240 10% 100%;
+    --popover-foreground: 240 10% 9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Brand Colors - Tech Blue Palette */
+    --primary: 214 95% 56%;
+    --primary-foreground: 240 10% 98%;
+    --primary-hover: 214 95% 46%;
+    --primary-light: 214 95% 96%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Teal Accent */
+    --secondary: 174 72% 56%;
+    --secondary-foreground: 240 10% 98%;
+    --secondary-hover: 174 72% 46%;
+    --secondary-light: 174 72% 96%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Success - Green */
+    --success: 142 71% 45%;
+    --success-foreground: 240 10% 98%;
+    --success-light: 142 71% 96%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Warning - Orange */
+    --warning: 31 81% 56%;
+    --warning-foreground: 240 10% 98%;
+    --warning-light: 31 81% 96%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Muted Elements */
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Accent System */
+    --accent: 240 5% 96%;
+    --accent-foreground: 240 10% 9%;
 
-    --radius: 0.5rem;
+    /* Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 240 10% 98%;
+
+    /* Form Elements */
+    --border: 240 5% 88%;
+    --input: 240 5% 88%;
+    --ring: 214 95% 56%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(214, 95%, 56%), hsl(174, 72%, 56%));
+    --gradient-secondary: linear-gradient(135deg, hsl(174, 72%, 56%), hsl(142, 71%, 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(214, 95%, 96%) 0%, hsl(174, 72%, 96%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(240, 10%, 100%) 0%, hsl(240, 5%, 98%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(240 5% 10% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(240 5% 10% / 0.1), 0 2px 4px -2px hsl(240 5% 10% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(240 5% 10% / 0.1), 0 4px 6px -4px hsl(240 5% 10% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(240 5% 10% / 0.1), 0 8px 10px -6px hsl(240 5% 10% / 0.1);
+    --shadow-glow: 0 0 20px hsl(214 95% 56% / 0.3);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    /* Category Colors */
+    --category-ai: 267 84% 81%;
+    --category-fullstack: 214 95% 56%;
+    --category-wordpress: 31 81% 56%;
+    --category-nocode: 142 71% 45%;
+    --category-dev: 174 72% 56%;
 
     --sidebar-background: 0 0% 98%;
 
