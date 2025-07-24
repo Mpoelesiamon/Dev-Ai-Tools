@@ -46,20 +46,6 @@ const Navbar = ({ onSearchChange, searchQuery }: NavbarProps) => {
             ))}
           </div>
 
-          {/* Search Bar */}
-          <div className="hidden lg:flex items-center space-x-4 flex-1 max-w-lg mx-8">
-            <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="text"
-                placeholder="Search AI tools..."
-                value={searchQuery}
-                onChange={(e) => onSearchChange(e.target.value)}
-                className="pl-10 bg-surface-alt border-card-border focus:ring-primary focus:border-primary"
-              />
-            </div>
-          </div>
-
           {/* CTA Button */}
           <div className="hidden md:flex">
             <Button variant="default" className="bg-gradient-primary hover:opacity-90 transition-opacity">
@@ -76,20 +62,6 @@ const Navbar = ({ onSearchChange, searchQuery }: NavbarProps) => {
             >
               {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
-          </div>
-        </div>
-
-        {/* Mobile Search */}
-        <div className="lg:hidden pb-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              type="text"
-              placeholder="Search AI tools..."
-              value={searchQuery}
-              onChange={(e) => onSearchChange(e.target.value)}
-              className="pl-10 bg-surface-alt border-card-border focus:ring-primary focus:border-primary"
-            />
           </div>
         </div>
 

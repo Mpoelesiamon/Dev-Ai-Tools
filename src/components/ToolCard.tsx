@@ -7,7 +7,10 @@ export interface Tool {
   id: string;
   name: string;
   description: string;
-  category: 'AI' | 'Full-stack' | 'WordPress' | 'No-code' | 'Developer';
+  category: 'AI' | 'Full-stack' | 'WordPress' | 'No-code' | 'Developer' |
+    'Research' | 'Image' | 'Copywriting' | 'SEO' | 'Chatbot' | 'Presentation' |
+    'Logo' | 'Audio' | 'Marketing' | 'Content Creation' | 'Writing' | 'Website' |
+    'Coding' | 'Sales' | 'Art Generators' | 'Productivity' | 'Video' | 'Music';
   tags: string[];
   pricing: 'Free' | 'Freemium' | 'Paid';
   url: string;

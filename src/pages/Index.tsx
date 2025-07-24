@@ -8,8 +8,9 @@ import ToolCard, { Tool } from "@/components/ToolCard";
 import FilterPanel, { FilterState } from "@/components/FilterPanel";
 import ToolModal from "@/components/ToolModal";
 import { aiTools, getUniqueCategories, getUniquePricing, getUniqueTags } from "@/data/aiTools";
-import { Search, TrendingUp, Users, Zap, ArrowRight, Github, Globe, Star } from "lucide-react";
+import { Search, TrendingUp, Users, Zap, ArrowRight, Github, Globe, Star, X } from "lucide-react";
 import heroImage from "@/assets/hero-image.jpg";
+import { Select } from "@/components/ui/select";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -20,13 +21,14 @@ const Index = () => {
   });
   const [selectedTool, setSelectedTool] = useState<Tool | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [sortOrder, setSortOrder] = useState<'az' | 'za'>('az');
+  const [searchActive, setSearchActive] = useState(false);
   const availableCategories = getUniqueCategories();
   const availablePricing = getUniquePricing();
   const availableTags = getUniqueTags();
 
   const filteredTools = useMemo(() => {
-    return aiTools.filter((tool) => {
+    let tools = aiTools.filter((tool) => {
       // Search query filter
       const matchesSearch = 
         tool.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -50,7 +52,20 @@ const Index = () => {
 
       return matchesSearch && matchesCategory && matchesPricing && matchesTags;
     });
-  }, [searchQuery, filters]);
+    // Sorting logic
+    tools = tools.sort((a, b) => {
+      if (sortOrder === 'az') {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+    return tools;
+  }, [searchQuery, filters, sortOrder]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const toolsPerPage = 8;
+  const totalPages = Math.ceil(filteredTools.length / toolsPerPage);
+  const paginatedTools = filteredTools.slice((currentPage - 1) * toolsPerPage, currentPage * toolsPerPage);
 
   const handleToolClick = (tool: Tool) => {
     setSelectedTool(tool);
@@ -178,6 +193,18 @@ const Index = () => {
                 availablePricing={availablePricing}
                 availableTags={availableTags}
               />
+              {/* Sort Order Dropdown */}
+              <div className="mt-6">
+                <label className="block text-sm font-medium text-foreground mb-2">Sort by Name</label>
+                <select
+                  className="w-full border rounded px-3 py-2 bg-surface-alt text-foreground"
+                  value={sortOrder}
+                  onChange={e => setSortOrder(e.target.value as 'az' | 'za')}
+                >
+                  <option value="az">A - Z</option>
+                  <option value="za">Z - A</option>
+                </select>
+              </div>
             </div>
 
             {/* Tools Grid */}
@@ -194,19 +221,107 @@ const Index = () => {
                     </Badge>
                   )}
                 </div>
+                {/* Search Bar on the right */}
+                <div className="relative flex items-center">
+                  <button
+                    className={`transition-all duration-300 p-2 rounded-full hover:bg-muted focus:outline-none ${searchActive ? 'bg-muted' : ''}`}
+                    onClick={() => setSearchActive((v) => !v)}
+                    aria-label="Search"
+                  >
+                    <Search className="h-5 w-5 text-muted-foreground" />
+                  </button>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Search tools..."
+                      value={searchQuery}
+                      onChange={e => setSearchQuery(e.target.value)}
+                      className={`transition-all duration-300 ml-2 px-3 py-1.5 border border-card-border rounded bg-surface-alt text-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary ${searchActive ? 'w-48 opacity-100' : 'w-0 opacity-0 pointer-events-none'} sm:w-48`}
+                      style={{ minWidth: searchActive ? '12rem' : 0, maxWidth: '12rem' }}
+                      onBlur={() => setSearchActive(false)}
+                      autoFocus={searchActive}
+                    />
+                    {searchQuery && searchActive && (
+                      <button
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground focus:outline-none"
+                        onClick={() => {
+                          setSearchQuery("");
+                          // Refocus the input after clearing
+                          setTimeout(() => {
+                            (document.querySelector('input[placeholder="Search tools..."]') as HTMLInputElement | null)?.focus();
+                          }, 0);
+                        }}
+                        tabIndex={-1}
+                        aria-label="Clear search"
+                        type="button"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* Tools Grid */}
-              {filteredTools.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {filteredTools.map((tool) => (
-                    <ToolCard
-                      key={tool.id}
-                      tool={tool}
-                      onCardClick={handleToolClick}
-                    />
-                  ))}
-                </div>
+              {paginatedTools.length > 0 ? (
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {paginatedTools.map((tool) => (
+                      <ToolCard
+                        key={tool.id}
+                        tool={tool}
+                        onCardClick={handleToolClick}
+                      />
+                    ))}
+                  </div>
+                  {/* Pagination Bar (right-aligned, max 3 numbers at a time) */}
+                  {totalPages > 1 && (
+                    <div className="flex justify-end items-center mt-8">
+                      <div className="flex gap-2">
+                        {currentPage > 2 && (
+                          <>
+                            <button
+                              onClick={() => setCurrentPage(1)}
+                              className={`px-3 py-1 rounded border border-card-border text-sm font-medium transition-colors duration-200 focus:outline-none ${currentPage === 1 ? 'bg-primary text-white border-primary' : 'bg-surface-alt text-foreground hover:bg-muted'}`}
+                              aria-current={currentPage === 1 ? 'page' : undefined}
+                            >
+                              1
+                            </button>
+                            {currentPage > 3 && <span className="px-1">...</span>}
+                          </>
+                        )}
+                        {Array.from({ length: totalPages }, (_, i) => i + 1)
+                          .filter(page =>
+                            page === currentPage ||
+                            page === currentPage - 1 ||
+                            page === currentPage + 1
+                          )
+                          .map(page => (
+                            <button
+                              key={page}
+                              onClick={() => setCurrentPage(page)}
+                              className={`px-3 py-1 rounded border border-card-border text-sm font-medium transition-colors duration-200 focus:outline-none ${currentPage === page ? 'bg-primary text-white border-primary' : 'bg-surface-alt text-foreground hover:bg-muted'}`}
+                              aria-current={currentPage === page ? 'page' : undefined}
+                            >
+                              {page}
+                            </button>
+                          ))}
+                        {currentPage < totalPages - 1 && (
+                          <>
+                            {currentPage < totalPages - 2 && <span className="px-1">...</span>}
+                            <button
+                              onClick={() => setCurrentPage(totalPages)}
+                              className={`px-3 py-1 rounded border border-card-border text-sm font-medium transition-colors duration-200 focus:outline-none ${currentPage === totalPages ? 'bg-primary text-white border-primary' : 'bg-surface-alt text-foreground hover:bg-muted'}`}
+                              aria-current={currentPage === totalPages ? 'page' : undefined}
+                            >
+                              {totalPages}
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </>
               ) : (
                 <Card className="bg-surface border-card-border text-center py-12">
                   <CardContent>
