@@ -1,10 +1,10 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
-import ToolCard, { Tool } from "@/components/ToolCard";
+import ToolCard, { Category, Tool } from "@/components/ToolCard";
 import FilterPanel, { FilterState } from "@/components/FilterPanel";
 import ToolModal from "@/components/ToolModal";
 import { aiTools, getUniqueCategories, getUniquePricing, getUniqueTags } from "@/data/aiTools";
@@ -12,7 +12,51 @@ import { Search, TrendingUp, Users, Zap, ArrowRight, Github, Globe, Star, X } fr
 import heroImage from "@/assets/hero-image.jpg";
 import { Select } from "@/components/ui/select";
 
+// Custom hook for sidebar scroll behavior
+const useSidebarScroll = () => {
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    const sidebar = sidebarRef.current;
+    if (!sidebar) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!isHovering) return;
+      
+      const { scrollTop, scrollHeight, clientHeight } = sidebar;
+      const isAtTop = scrollTop === 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight;
+
+      // If scrolling up and at top, or scrolling down and at bottom, allow page scroll
+      if ((e.deltaY < 0 && isAtTop) || (e.deltaY > 0 && isAtBottom)) {
+        return;
+      }
+
+      // Otherwise, prevent page scroll and scroll the sidebar
+      e.preventDefault();
+      sidebar.scrollTop += e.deltaY;
+    };
+
+    const handleMouseEnter = () => setIsHovering(true);
+    const handleMouseLeave = () => setIsHovering(false);
+
+    sidebar.addEventListener('wheel', handleWheel, { passive: false });
+    sidebar.addEventListener('mouseenter', handleMouseEnter);
+    sidebar.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      sidebar.removeEventListener('wheel', handleWheel);
+      sidebar.removeEventListener('mouseenter', handleMouseEnter);
+      sidebar.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [isHovering]);
+
+  return sidebarRef;
+};
+
 const Index = () => {
+  const sidebarRef = useSidebarScroll();
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState<FilterState>({
     categories: [],
@@ -38,7 +82,7 @@ const Index = () => {
       // Category filter
       const matchesCategory = 
         filters.categories.length === 0 || 
-        filters.categories.includes(tool.category);
+        filters.categories.some(category => tool.categories.includes(category));
 
       // Pricing filter
       const matchesPricing = 
@@ -139,10 +183,6 @@ const Index = () => {
                 Explore Tools
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
-              <Button size="lg" variant="outline" className="px-8">
-                Submit Your Tool
-                <Github className="w-5 h-5 ml-2" />
-              </Button>
             </div>
 
             {/* Stats */}
@@ -185,7 +225,10 @@ const Index = () => {
 
           <div className="lg:grid lg:grid-cols-4 lg:gap-8">
             {/* Filters Sidebar */}
-            <div className="lg:col-span-1 mb-8 lg:mb-0">
+            <div 
+              ref={sidebarRef}
+              className="lg:col-span-1 mb-8 lg:mb-0 lg:sticky lg:top-4 lg:h-[calc(100vh-2rem)] lg:overflow-y-auto lg:pr-4 sidebar-scrollbar"
+            >
               <FilterPanel
                 filters={filters}
                 onFilterChange={setFilters}
@@ -361,7 +404,7 @@ const Index = () => {
               <CardContent>
                 <div className="space-y-3">
                   {availableCategories.slice(0, 5).map((category, index) => {
-                    const count = aiTools.filter(tool => tool.category === category).length;
+                    const count = aiTools.filter(tool => tool.categories.includes(category)).length;
                     const percentage = Math.round((count / aiTools.length) * 100);
                     return (
                       <div key={category} className="flex justify-between items-center">
@@ -452,14 +495,6 @@ const Index = () => {
             Whether you're a seasoned developer, a no-code enthusiast, or just starting your journey with AI, 
             we help you find the perfect tools to bring your ideas to life.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="gradient" size="lg">
-              Submit Your Tool
-            </Button>
-            <Button variant="outline" size="lg">
-              Contact Us
-            </Button>
-          </div>
         </div>
       </section>
 

@@ -5,9 +5,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Filter, X } from "lucide-react";
+import { Category } from "./ToolCard";
 
 export interface FilterState {
-  categories: string[];
+  categories: Category[];
   pricing: string[];
   tags: string[];
 }
@@ -15,7 +16,7 @@ export interface FilterState {
 interface FilterPanelProps {
   filters: FilterState;
   onFilterChange: (filters: FilterState) => void;
-  availableCategories: string[];
+  availableCategories: Category[];
   availablePricing: string[];
   availableTags: string[];
 }
@@ -27,19 +28,27 @@ const FilterPanel = ({
   availablePricing, 
   availableTags 
 }: FilterPanelProps) => {
-  const updateFilter = (type: keyof FilterState, value: string, checked: boolean) => {
+  const updateFilter = (type: 'categories' | 'pricing' | 'tags', value: string | Category, checked: boolean) => {
     const newFilters = { ...filters };
     if (checked) {
-      newFilters[type] = [...newFilters[type], value];
+      if (type === 'categories') {
+        newFilters[type] = [...newFilters[type], value as Category];
+      } else {
+        newFilters[type] = [...newFilters[type], value as string];
+      }
     } else {
-      newFilters[type] = newFilters[type].filter(item => item !== value);
+      if (type === 'categories') {
+        newFilters[type] = (newFilters[type] as Category[]).filter(item => item !== value) as Category[];
+      } else {
+        newFilters[type] = (newFilters[type] as string[]).filter(item => item !== value);
+      }
     }
     onFilterChange(newFilters);
   };
 
   const clearAllFilters = () => {
     onFilterChange({
-      categories: [],
+      categories: [] as Category[],
       pricing: [],
       tags: [],
     });
@@ -49,9 +58,13 @@ const FilterPanel = ({
     return filters.categories.length + filters.pricing.length + filters.tags.length;
   };
 
-  const removeFilter = (type: keyof FilterState, value: string) => {
+  const removeFilter = (type: 'categories' | 'pricing' | 'tags', value: string) => {
     const newFilters = { ...filters };
-    newFilters[type] = newFilters[type].filter(item => item !== value);
+    if (type === 'categories') {
+      newFilters[type] = newFilters[type].filter(item => item !== value) as Category[];
+    } else {
+      newFilters[type] = newFilters[type].filter(item => item !== value);
+    }
     onFilterChange(newFilters);
   };
 
@@ -190,6 +203,8 @@ const FilterPanel = ({
           ))}
         </CardContent>
       </Card>
+
+
 
       {/* Popular Tags */}
       <Card className="bg-surface border-card-border">

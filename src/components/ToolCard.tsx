@@ -3,14 +3,16 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ExternalLink, Star, Users, Code, Zap } from "lucide-react";
 
+export type Category = 'AI' | 'Full-stack' | 'WordPress' | 'No-code' | 'Developer' |
+  'Research' | 'Image' | 'Copywriting' | 'SEO' | 'Chatbot' | 'Presentation' |
+  'Logo' | 'Audio' | 'Marketing' | 'Content Creation' | 'Writing' | 'Website' |
+  'Coding' | 'Sales' | 'Art Generators' | 'Productivity' | 'Video' | 'Music';
+
 export interface Tool {
   id: string;
   name: string;
   description: string;
-  category: 'AI' | 'Full-stack' | 'WordPress' | 'No-code' | 'Developer' |
-    'Research' | 'Image' | 'Copywriting' | 'SEO' | 'Chatbot' | 'Presentation' |
-    'Logo' | 'Audio' | 'Marketing' | 'Content Creation' | 'Writing' | 'Website' |
-    'Coding' | 'Sales' | 'Art Generators' | 'Productivity' | 'Video' | 'Music';
+  categories: Category[];
   tags: string[];
   pricing: 'Free' | 'Freemium' | 'Paid';
   url: string;
@@ -32,6 +34,24 @@ const categoryColors = {
   'WordPress': 'bg-orange-100 text-orange-800 border-orange-200',
   'No-code': 'bg-green-100 text-green-800 border-green-200',
   'Developer': 'bg-teal-100 text-teal-800 border-teal-200',
+  'Research': 'bg-indigo-100 text-indigo-800 border-indigo-200',
+  'Image': 'bg-pink-100 text-pink-800 border-pink-200',
+  'Copywriting': 'bg-yellow-100 text-yellow-800 border-yellow-200',
+  'SEO': 'bg-emerald-100 text-emerald-800 border-emerald-200',
+  'Chatbot': 'bg-cyan-100 text-cyan-800 border-cyan-200',
+  'Presentation': 'bg-violet-100 text-violet-800 border-violet-200',
+  'Logo': 'bg-rose-100 text-rose-800 border-rose-200',
+  'Audio': 'bg-sky-100 text-sky-800 border-sky-200',
+  'Marketing': 'bg-lime-100 text-lime-800 border-lime-200',
+  'Content Creation': 'bg-amber-100 text-amber-800 border-amber-200',
+  'Writing': 'bg-orange-100 text-orange-800 border-orange-200',
+  'Website': 'bg-blue-100 text-blue-800 border-blue-200',
+  'Coding': 'bg-slate-100 text-slate-800 border-slate-200',
+  'Sales': 'bg-red-100 text-red-800 border-red-200',
+  'Art Generators': 'bg-fuchsia-100 text-fuchsia-800 border-fuchsia-200',
+  'Productivity': 'bg-green-100 text-green-800 border-green-200',
+  'Video': 'bg-purple-100 text-purple-800 border-purple-200',
+  'Music': 'bg-pink-100 text-pink-800 border-pink-200',
 };
 
 const pricingColors = {
@@ -70,9 +90,14 @@ const ToolCard = ({ tool, onCardClick }: ToolCardProps) => {
                 {tool.name}
               </CardTitle>
               <div className="flex items-center space-x-2 mt-1">
-                <Badge variant="outline" className={categoryColors[tool.category]}>
-                  {tool.category}
+                <Badge variant="outline" className={categoryColors[tool.categories[0]] || 'bg-gray-100 text-gray-800 border-gray-200'}>
+                  {tool.categories[0]}
                 </Badge>
+                {tool.categories.length > 1 && (
+                  <Badge variant="outline" className="bg-blue-100 text-blue-800 border-blue-200 text-xs">
+                    +{tool.categories.length - 1}
+                  </Badge>
+                )}
                 <Badge variant="outline" className={pricingColors[tool.pricing]}>
                   {tool.pricing}
                 </Badge>

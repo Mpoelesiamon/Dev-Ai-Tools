@@ -46,12 +46,7 @@ const Navbar = ({ onSearchChange, searchQuery }: NavbarProps) => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex">
-            <Button variant="default" className="bg-gradient-primary hover:opacity-90 transition-opacity">
-              Submit Tool
-            </Button>
-          </div>
+
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -79,11 +74,6 @@ const Navbar = ({ onSearchChange, searchQuery }: NavbarProps) => {
                   {item.label}
                 </a>
               ))}
-              <div className="px-3 py-2">
-                <Button variant="default" className="w-full bg-gradient-primary">
-                  Submit Tool
-                </Button>
-              </div>
             </div>
           </div>
         )}
